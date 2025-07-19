@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8">
+  <title>Alimente o Gerimundo</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <style>
+    body {
+      background-color: #fff4f4;
+      font-family: 'Comic Sans MS', cursive;
+      text-align: center;
+      padding: 20px;
+    }
+    h1 {
+      font-size: 24px;
+      color: #d14d72;
+    }
+    .petiscos {
+      margin-top: 20px;
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+    .petisco {
+      width: 60px;
+      height: 60px;
+      background-color: #fff;
+      border: 2px dashed #d14d72;
+      border-radius: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: grab;
+      font-size: 28px;
+      user-select: none;
+    }
+    .petisco.selecionado {
+      background-color: #ffe3ec;
+      border: 2px solid #ff7c9e;
+      scale: 1.1;
+    }
+    .gatinho-area {
+      margin-top: 40px;
+      min-height: 200px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+    .gatinho-img {
+      width: 120px;
+      height: auto;
+      transition: transform 0.3s ease-in-out;
+    }
+    #parabens {
+      display: none;
+      margin-top: 30px;
+    }
+    #parabens h2 {
+      font-size: 20px;
+      color: #8c4f4f;
+      margin-top: 20px;
+    }
+    #botao-carta {
+      margin-top: 20px;
+      padding: 12px 24px;
+      background-color: #ff7c9e;
+      color: white;
+      border: none;
+      border-radius: 10px;
+      font-size: 18px;
+      cursor: pointer;
+    }
+  </style>
+</head>
+<body>
+
+  <h1>Rápido, alimente o Gerimundo! (Toque no petisco e depois nele)</h1>
+
+  <div class="petiscos" id="petiscos">
+    <div class="petisco" draggable="true">🍗</div>
+    <div class="petisco" draggable="true">🐟</div>
+    <div class="petisco" draggable="true">🧀</div>
+    <div class="petisco" draggable="true">🍤</div>
+    <div class="petisco" draggable="true">🥓</div>
+    <div class="petisco" draggable="true">🍖</div>
+  </div>
+
+  <div class="gatinho-area" id="area-gatinho">
+    <img id="gatinho" src="magro.png" alt="Gatinho Magro" class="gatinho-img">
+  </div>
+
+  <div id="parabens">
+    <h2>Você salvou o Gerimundo, agora ele tá todo poperta.<br>Gerimundo está lhe agradecendo com isso:</h2>
+    <button id="botao-carta" onclick="mostrarCarta()">Clique</button>
+  </div>
+
+  <script>
+    let alimentosDoados = 0;
+    const totalAlimentos = 6;
+    let petiscoSelecionado = null;
+
+    function alimentarGerimundo() {
+      if (petiscoSelecionado) {
+        petiscoSelecionado.remove();
+        petiscoSelecionado = null;
+        alimentosDoados++;
+
+        if (alimentosDoados >= totalAlimentos) {
+          document.getElementById('gatinho').src = 'gordo.png';
+          document.getElementById('gatinho').style.transform = 'scale(1.5)';
+          document.getElementById('parabens').style.display = 'block';
+        }
+      }
+    }
+
+    function mostrarCarta() {
+      window.location.href = "cartinha.html";
+    }
+
+    // Seleção por toque
+    const petiscos = document.querySelectorAll('.petisco');
+
+    petiscos.forEach(petisco => {
+      petisco.addEventListener('click', () => {
+        petiscos.forEach(p => p.classList.remove('selecionado'));
+        petisco.classList.add('selecionado');
+        petiscoSelecionado = petisco;
+      });
+    });
+
+    document.getElementById('area-gatinho').addEventListener('click', () => {
+      alimentarGerimundo();
+    });
+
+    // Drag & Drop para desktop (mantém funcional)
+    petiscos.forEach(petisco => {
+      petisco.addEventListener('dragstart', e => {
+        e.dataTransfer.setData('text/plain', 'petisco');
+        petisco.classList.add('arrastando');
+      });
+
+      petisco.addEventListener('dragend', () => {
+        petisco.classList.remove('arrastando');
+      });
+    });
+
+    document.getElementById('area-gatinho').addEventListener('dragover', e => e.preventDefault());
+
+    document.getElementById('area-gatinho').addEventListener('drop', e => {
+      e.preventDefault();
+      const dragged = document.querySelector('.arrastando');
+      if (dragged) {
+        dragged.remove();
+        alimentosDoados++;
+        if (alimentosDoados >= totalAlimentos) {
+          document.getElementById('gatinho').src = 'gordo.png';
+          document.getElementById('gatinho').style.transform = 'scale(1.5)';
+          document.getElementById('parabens').style.display = 'block';
+        }
+      }
+    });
+  </script>
+
+</body>
+</html>

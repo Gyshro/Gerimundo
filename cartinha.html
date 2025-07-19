@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8">
+  <title>Cartinha do Gerimundo</title>
+  <style>
+    body {
+      background: linear-gradient(135deg, #fff0f6, #ffe4e1);
+      font-family: 'Segoe UI', 'Comic Sans MS', cursive;
+      color: #5a2b2b;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      min-height: 100vh;
+      padding: 20px;
+    }
+    .cartinha {
+      background-color: #ffffffc9;
+      border: 3px dashed #ff7c9e;
+      border-radius: 18px;
+      padding: 30px;
+      max-width: 600px;
+      box-shadow: 0 0 20px rgba(255, 170, 187, 0.4);
+    }
+    h1 {
+      font-size: 28px;
+      margin-bottom: 20px;
+      color: #d14d72;
+    }
+    p {
+      font-size: 18px;
+      line-height: 1.6;
+    }
+    .assinatura {
+      margin-top: 30px;
+      font-style: italic;
+    }
+    .gatinho-img {
+      width: 80px;
+      margin-bottom: 15px;
+    }
+    .voltar-btn {
+      margin-top: 30px;
+      background-color: #ff7c9e;
+      color: white;
+      padding: 10px 20px;
+      border: none;
+      border-radius: 12px;
+      font-size: 16px;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+    }
+    .voltar-btn:hover {
+      background-color: #e8658a;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="cartinha">
+    <img src="gordo.png" alt="Gerimundo" class="gatinho-img">
+    <h1>Um miado especial para você</h1>
+    <p>
+      Obrigado por me alimentar!
+
+Era só um gatinho perdido no mundo, magrelinho, cansado, meio desacreditado das coisas boas… assim era eu, até você aparecer.
+Num mundo de cor cinza, onde até o maior dos arco iris parecia espairecer a menor das cores, rodeado de uma neblina constante e de dores estridentes que faziam tudo ser um pouco menos interessante... existiu você, uma aquarela.
+Não uma aquarela qualquer. Mas daquelas que escorrem suaves num papel seco, com delicadeza, mas com força o suficiente pra transformar cada canto desbotado em paisagem viva. Você não colore só por fora pois você vai entrando, manchando de beleza tudo que antes era ausência. Você tem o dom de suavizar os contornos duros da realidade, de colocar azul onde antes só havia sombra e de misturar tons quentes nos dias frios, e deixar tudo mais leve só por estar.
+Você é mistura de cor que ninguém mais conseguiria repetir. Uma combinação única que escapa dos padrões, porque enfim.. padrões não são muito a sua cara. É justamente por isso que tudo em você chama atenção, desde o jeito que você fala até o silêncio que deixa. Tudo tem cor e tudo tem impacto contigo
+E eu, que era só rascunho, fui virando retrato bonito depois que você chegou.l :] Porque ser olhado por você é quase como ser pintado com cuidado. E ser amado por você... é ser eternamente moldado pelo toque mais gentil que existe, que é o seu
+    </p>
+
+    <p class="assinatura">
+      Com muito amor e barriguinha cheia,<br>
+      <strong>Gerimundo 🐱💌</strong>
+    </p>
+
+    <button class="voltar-btn" onclick="voltar()">Voltar</button>
+  </div>
+
+  <script>
+    function voltar() {
+      window.location.href = "index.html";
+    }
+  </script>
+
+</body>
+</html>
